@@ -608,7 +608,11 @@ impl Context {
         self.pre_touch_mapped_memory
     }
 
-    pub fn request_driver_termination(directory: &str, token_buffer: *mut u8, token_length: Index) -> Result<(), AeronError> {
+    pub unsafe fn request_driver_termination(
+        directory: &str,
+        token_buffer: *mut u8,
+        token_length: Index,
+    ) -> Result<(), AeronError> {
         let cnc_filename = String::from(directory) + "/" + cnc_file_descriptor::CNC_FILE;
 
         if MemoryMappedFile::get_file_size(cnc_filename.clone()).expect("Error getting CnC file size") > 0 {
