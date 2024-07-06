@@ -141,16 +141,15 @@ impl Aeron {
             conductor_invoker: AgentInvoker::new(local_conductor.clone(), context.error_handler()),
         };
 
-        let conductor_runner = AgentRunner::new(
-            local_conductor,
-            local_idle_strategy,
-            context.error_handler(),
-            &context.agent_name(),
-        );
-
         if use_agent_invoker {
             aeronchik.conductor_invoker.start();
         } else {
+            let conductor_runner = AgentRunner::new(
+                local_conductor,
+                local_idle_strategy,
+                context.error_handler(),
+                &context.agent_name(),
+            );
             aeronchik.conductor_stopper = Some(AgentRunner::start(conductor_runner)?);
         }
 

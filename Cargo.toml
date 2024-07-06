@@ -1,12 +1,17 @@
 [package]
 name = "aeron-rs"
-version = "0.1.6"
+version = "0.1.7"
 authors = ["Denis Komissarov <denisxor@gmail.com>", "Kirill Karbushev <kiriosk@yandex.ru>", "Alexander Ostrovskiy <alexander.ostrovskiy@gmail.com>",]
 license = "Apache-2.0"
 description = "Aeron client library - fast messaging over UDP on Rust"
 readme = "README.md"
 repository = "https://github.com/UnitedTraders/aeron-rs"
-edition = "2018"
+edition = "2021"
+
+[features]
+default = [ "glommio" ]
+async = [ "dep:futures", "dep:futures-lite" ]
+glommio = [ "dep:glommio", "async" ]
 
 [dependencies]
 thiserror = "1.0"
@@ -22,6 +27,9 @@ pretty_env_logger = "0.5"
 galvanic-assert = "0.8"
 chrono = "0.4"
 memoffset = "0.9"
+glommio = { version = "0.9", optional = true }
+futures = { version = "0.3", optional = true }
+futures-lite = { version = "2.3", optional = true }
 
 [dev-dependencies]
 tempfile = "3.10"
