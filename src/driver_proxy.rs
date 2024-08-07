@@ -290,7 +290,7 @@ impl DriverProxy {
         Ok(correlation_id)
     }
 
-    pub fn terminate_driver(&self, token_buffer: *const u8, token_length: Index) -> Result<(), AeronError> {
+    pub unsafe fn terminate_driver(&self, token_buffer: *const u8, token_length: Index) -> Result<(), AeronError> {
         self.write_command_to_driver(|buffer, length| {
             let mut request = TerminateDriverFlyweight::new(buffer, 0);
 
