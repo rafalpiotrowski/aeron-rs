@@ -326,6 +326,7 @@ pub struct Context {
     is_on_new_exclusive_publication_handler_set: bool,
     pre_touch_mapped_memory: bool,
     agent_name: String,
+    conductor_cpu_affinity: Option<usize>,
 }
 
 impl Default for Context {
@@ -353,6 +354,7 @@ impl Context {
             is_on_new_exclusive_publication_handler_set: false,
             pre_touch_mapped_memory: false,
             agent_name: String::from(AGENT_NAME),
+            conductor_cpu_affinity: None,
         }
     }
 
@@ -591,6 +593,15 @@ impl Context {
 
     pub fn use_conductor_agent_invoker(&self) -> bool {
         self.use_conductor_agent_invoker
+    }
+
+    pub fn set_conductor_cpu_affinity(&mut self, cpu_id: usize) -> &Self {
+        self.conductor_cpu_affinity = Some(cpu_id);
+        self
+    }
+
+    pub fn conductor_cpu_affinity(&self) -> Option<usize> {
+        self.conductor_cpu_affinity
     }
 
     /**

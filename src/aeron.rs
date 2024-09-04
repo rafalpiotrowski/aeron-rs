@@ -142,14 +142,19 @@ impl Aeron {
         };
 
         if use_agent_invoker {
+            crate::log!(trace, "Using AgentInvoker");
             aeronchik.conductor_invoker.start();
         } else {
-            let conductor_runner = AgentRunner::new(
+            crate::log!(trace, "Using AgentRunner");
+            let mut conductor_runner = AgentRunner::new(
                 local_conductor,
                 local_idle_strategy,
                 context.error_handler(),
                 &context.agent_name(),
             );
+            if let Some(cpu_id) = context.conductor_cpu_affinity() {
+                conductor_runner.set_cpu_id(cpu_id);
+            }
             aeronchik.conductor_stopper = Some(AgentRunner::start(conductor_runner)?);
         }
 
@@ -590,8 +595,10 @@ impl Aeron {
 impl Drop for Aeron {
     fn drop(&mut self) {
         if self.context.use_conductor_agent_invoker() {
+            crate::log!(trace, "Closing conductor invoker");
             self.conductor_invoker.close();
         } else {
+            crate::log!(trace, "Closing conductor stopper");
             self.conductor_stopper.as_mut().unwrap().stop();
         }
     }

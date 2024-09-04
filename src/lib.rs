@@ -19,9 +19,6 @@
 #[macro_use]
 extern crate memoffset;
 
-#[cfg(feature = "glommio")]
-pub mod glommio;
-
 pub mod aeron;
 pub mod buffer_builder;
 pub mod channel_uri;
