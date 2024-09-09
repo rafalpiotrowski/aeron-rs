@@ -2015,7 +2015,7 @@ mod tests {
     fn on_new_subscription_handler(_channel: CString, _stream_id: i32, _correlation_id: i64) {}
 
     fn error_handler(err: AeronError) {
-        println!("Got error: {:?}", err);
+        crate::log!(error, "Got error: {:?}", err);
     }
 
     fn on_available_counter_handler(_counters_reader: &CountersReader, _registration_id: i64, _counter_id: i32) {}
@@ -3021,7 +3021,6 @@ mod tests {
     fn error_handler2(error: AeronError) {
         ERR_HANDLER_CALLED2.store(true, Ordering::SeqCst);
         assert_that!(&error, has_structure!(AeronError::DriverTimeout[any_value()]));
-        println!("It was called");
     }
 
     fn error_handler3(error: AeronError) {

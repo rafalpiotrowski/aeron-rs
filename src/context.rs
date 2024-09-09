@@ -326,6 +326,7 @@ pub struct Context {
     is_on_new_exclusive_publication_handler_set: bool,
     pre_touch_mapped_memory: bool,
     agent_name: String,
+    conductor_cpu_affinity: Option<usize>,
 }
 
 impl Default for Context {
@@ -353,6 +354,7 @@ impl Context {
             is_on_new_exclusive_publication_handler_set: false,
             pre_touch_mapped_memory: false,
             agent_name: String::from(AGENT_NAME),
+            conductor_cpu_affinity: None,
         }
     }
 
@@ -593,6 +595,15 @@ impl Context {
         self.use_conductor_agent_invoker
     }
 
+    pub fn set_conductor_cpu_affinity(&mut self, cpu_id: usize) -> &Self {
+        self.conductor_cpu_affinity = Some(cpu_id);
+        self
+    }
+
+    pub fn conductor_cpu_affinity(&self) -> Option<usize> {
+        self.conductor_cpu_affinity
+    }
+
     /**
      * Set whether memory mapped files should be pre-touched so they are pre-loaded to avoid later page faults.
      *
@@ -632,7 +643,9 @@ impl Context {
             let ring_buffer = ManyToOneRingBuffer::new(to_driver_buffer).expect("ManyToOneRingBuffer creation failed");
             let driver_proxy = DriverProxy::new(Arc::new(ring_buffer));
 
-            driver_proxy.terminate_driver(token_buffer, token_length)?;
+            unsafe {
+                driver_proxy.terminate_driver(token_buffer, token_length)?;
+            }
         }
         Ok(())
     }

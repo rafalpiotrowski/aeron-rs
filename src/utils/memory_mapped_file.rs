@@ -45,11 +45,15 @@ impl FileHandle {
             .map(move |mmap| Self { mmap, file_path })
     }
 
+    /// Create a new file with the given filename and size.
+    /// The file is created with read and write permissions and is truncated to the given size.
+    /// If the file already exists, it is truncated to the given size.
     fn create<P: AsRef<Path> + Into<OsString>>(filename: P, size: Index) -> Result<FileHandle, AeronError> {
         let file_path: OsString = filename.into();
         let file = OpenOptions::new()
             .read(true)
             .write(true)
+            .truncate(true)
             .create(true)
             .open(&file_path)
             .map_err(AeronError::MemMappedFileError)?;
@@ -184,6 +188,7 @@ mod tests {
         let tmp_file = OpenOptions::new()
             .read(true)
             .write(true)
+            .truncate(true)
             .create(true)
             .open(&file_path)
             .unwrap();

@@ -43,9 +43,12 @@ impl AgentStopper {
     }
 
     pub fn stop(&mut self) {
+        crate::log!(trace, "Sending stop command to AgentRunner");
         self.tx.send(true).expect("Can't send stop command to AgentRunner");
 
         let _b = self.thread.take().unwrap().join();
+
+        crate::log!(trace, "AgentRunner stopped");
     }
 }
 
@@ -57,6 +60,7 @@ pub struct AgentRunner<
     idle_strategy: Arc<I>,
     exception_handler: Box<dyn ErrorHandler + std::marker::Send>,
     name: String,
+    cpu_id: Option<usize>,
 }
 
 impl<
@@ -75,6 +79,7 @@ impl<
             idle_strategy,
             exception_handler,
             name: String::from(name),
+            cpu_id: None,
         }
     }
 
@@ -91,6 +96,14 @@ impl<
         self.name = String::from(new_name);
     }
 
+    pub fn cpu_id(&self) -> Option<usize> {
+        self.cpu_id
+    }
+
+    pub fn set_cpu_id(&mut self, cpu_id: usize) {
+        self.cpu_id = Some(cpu_id);
+    }
+
     /**
      * Start the Agent running
      *
@@ -101,7 +114,17 @@ impl<
         let (tx, rx) = channel::<bool>();
 
         let th = thread::Builder::new().name(this.name.clone()).spawn(move || {
+            if let Some(id) = this.cpu_id {
+                let res = core_affinity::set_for_current(core_affinity::CoreId { id });
+                if !res {
+                    panic!("Failed to pin thread to core {}", id);
+                }
+                crate::log!(trace, "AgentRunner thread started on CPU {}", id);
+            } else {
+                crate::log!(trace, "AgentRunner thread started");
+            }
             this.run(rx);
+            crate::log!(trace, "AgentRunner thread finished");
         });
 
         if let Ok(handle) = th {
@@ -123,6 +146,7 @@ impl<
             // Monitor message from main thread and be ready to finish the work
             if let Ok(time_to_stop) = stop_rx.try_recv() {
                 if time_to_stop {
+                    crate::log!(trace, "AgentRunner received stop command");
                     break;
                 }
             }
@@ -133,8 +157,12 @@ impl<
             }
         }
 
+        crate::log!(trace, "AgentRunner closing");
+
         if let Err(error) = self.agent.lock().expect("Mutex poisoned").on_close() {
             self.exception_handler.call(error);
         }
+
+        crate::log!(trace, "AgentRunner closed");
     }
 }
