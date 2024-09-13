@@ -3670,7 +3670,6 @@ mod tests {
 
     #[test]
     #[timeout(5000)]
-    #[should_panic]
     fn should_close_publication_on_inter_service_timeout() {
         let test = ClientConductorTest::new();
 
@@ -3704,7 +3703,6 @@ mod tests {
 
     #[test]
     #[timeout(5000)]
-    #[should_panic]
     fn should_close_exclusive_publication_on_inter_service_timeout() {
         let test = ClientConductorTest::new();
 
