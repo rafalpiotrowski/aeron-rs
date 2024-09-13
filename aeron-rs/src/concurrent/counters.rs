@@ -345,7 +345,7 @@ impl CountersManager {
     /// The keys can be provided by two ways:
     /// 1. through key_opt param
     /// 2. could be generated and written in-place by key_func param
-    /// If both key_opt and key_func are specified then AeronError is returned.
+    ///     If both key_opt and key_func are specified then AeronError is returned.
     pub fn allocate_opt(
         &mut self,
         type_id: i32,
@@ -495,7 +495,7 @@ mod tests {
     use crate::utils;
 
     const NUM_COUNTERS: Index = 4;
-    // const INT_MAX: i32 = std::i32::MAX;
+    // const INT_MAX: i32 = i32::MAX;
     const FREE_TO_REUSE_TIMEOUT: u64 = 1000;
 
     macro_rules! gen_counters_manager {

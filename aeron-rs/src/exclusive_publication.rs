@@ -950,7 +950,7 @@ mod tests {
             term_tail_counter_offset(active_index),
             raw_tail_value(TERM_ID_1, initial_position as i64),
         );
-        test.publication_limit.set(i32::max_value() as i64);
+        test.publication_limit.set(i32::MAX as i64);
         test.create_pub();
 
         let position = test.publication.position();
@@ -972,7 +972,7 @@ mod tests {
             term_tail_counter_offset(active_index),
             raw_tail_value(TERM_ID_1, initial_position as i64),
         );
-        test.publication_limit.set(i32::max_value() as i64);
+        test.publication_limit.set(i32::MAX as i64);
         test.create_pub();
 
         let position = test.publication.position();
@@ -1013,7 +1013,7 @@ mod tests {
             term_tail_counter_offset(active_index),
             raw_tail_value(TERM_ID_1, initial_position as i64),
         );
-        test.publication_limit.set(i32::max_value() as i64);
+        test.publication_limit.set(i32::MAX as i64);
         test.create_pub();
 
         let buffer_claim = BufferClaim::default();

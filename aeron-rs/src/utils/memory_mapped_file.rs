@@ -66,6 +66,7 @@ impl FileHandle {
     }
 }
 
+#[allow(dead_code)]
 #[derive(Debug)]
 pub struct MemoryMappedFile {
     ptr: *mut u8,

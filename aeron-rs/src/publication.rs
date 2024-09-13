@@ -470,7 +470,7 @@ impl Publication {
     ) -> Result<u64, AeronError> {
         let length: Index = buffers.iter().map(|&ab| ab.capacity()).sum();
 
-        if length == std::i32::MAX {
+        if length == i32::MAX {
             return Err(IllegalStateError::LengthOverflow(length).into());
         }
 
@@ -1077,7 +1077,7 @@ mod tests {
             term_tail_counter_offset(active_index),
             raw_tail_value(TERM_ID_1, initial_position as i64),
         );
-        test.publication_limit.set(i32::max_value() as i64);
+        test.publication_limit.set(i32::MAX as i64);
 
         let position = test.publication.position();
         assert!(position.is_ok());
@@ -1118,7 +1118,7 @@ mod tests {
             term_tail_counter_offset(active_index),
             raw_tail_value(TERM_ID_1, initial_position as i64),
         );
-        test.publication_limit.set(i32::max_value() as i64);
+        test.publication_limit.set(i32::MAX as i64);
 
         let mut buffer_claim = BufferClaim::default();
 

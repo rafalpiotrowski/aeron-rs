@@ -14,10 +14,7 @@
  * limitations under the License.
  */
 
-use std::borrow::BorrowMut;
-use std::sync::{Arc, LazyLock, Mutex};
-
-use crate::concurrent::atomic_buffer::{AlignedBuffer, AtomicBuffer};
+use crate::concurrent::atomic_buffer::AtomicBuffer;
 use crate::concurrent::counters::CountersReader;
 use crate::utils::types::{Index, I64_SIZE};
 

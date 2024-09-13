@@ -13,13 +13,13 @@ impl SemanticVersion {
     /// Compose a 4-byte integer with major, minor, and patch version stored in the least significant 3 bytes.
     /// The sum of the components must be greater than zero.
     pub fn compose(major: i32, minor: i32, patch: i32) -> Result<SemanticVersion, AgronaError> {
-        if major < 0 || major > 255 {
+        if !(0..=255).contains(&major) {
             return Err(AgronaError::ArgumentOutOfBounds(format!("major must be 0-255: {0}", major)));
         }
-        if minor < 0 || minor > 255 {
+        if !(0..=255).contains(&minor) {
             return Err(AgronaError::ArgumentOutOfBounds(format!("minor must be 0-255: {0}", minor)));
         }
-        if patch < 0 || patch > 255 {
+        if !(0..=255).contains(&patch) {
             return Err(AgronaError::ArgumentOutOfBounds(format!("patch must be 0-255: {0}", patch)));
         }
         Ok(SemanticVersion {
@@ -42,8 +42,8 @@ impl SemanticVersion {
     }
 }
 
-impl Into<String> for SemanticVersion {
-    fn into(self) -> String {
-        format!("{0}.{1}.{2}", self.major(), self.minor(), self.patch()).to_string()
+impl From<SemanticVersion> for String {
+    fn from(val: SemanticVersion) -> Self {
+        format!("{0}.{1}.{2}", val.major(), val.minor(), val.patch()).to_string()
     }
 }

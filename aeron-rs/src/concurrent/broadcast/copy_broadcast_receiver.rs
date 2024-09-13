@@ -22,6 +22,7 @@ use crate::command::control_protocol_events::AeronCommand;
 use crate::concurrent::atomic_buffer::{AlignedBuffer, AtomicBuffer};
 use crate::utils::types::Index;
 
+#[allow(dead_code)]
 trait Handler {
     fn handle(message_type_id: i32, buffer: AtomicBuffer, i1: Index, i2: Index);
 }

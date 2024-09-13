@@ -1,14 +1,10 @@
-use aeron_archiver_messages::auth_connect_request_codec::{self, AuthConnectRequestEncoder};
-use aeron_archiver_messages::{
-    message_header_codec::{self, MessageHeaderEncoder},
-    WriteBuf,
-};
+use aeron_archiver_messages::auth_connect_request_codec::AuthConnectRequestEncoder;
+use aeron_archiver_messages::{message_header_codec, WriteBuf};
 use std::{
     slice,
     sync::{Arc, Mutex},
 };
 
-use crate::aeron::Aeron;
 use crate::client_conductor::ClientConductor;
 use crate::concurrent::agent_invoker::AgentInvoker;
 use crate::concurrent::strategies::YieldingIdleStrategy;
@@ -18,7 +14,7 @@ use crate::utils::types::Index;
 use crate::{
     concurrent::{
         atomic_buffer::{AlignedBuffer, AtomicBuffer},
-        strategies::{NoOpIdleStrategy, Strategy},
+        strategies::Strategy,
     },
     publication::Publication,
     security::{CredentialSupplier, NoCredentialsSupplier},
@@ -84,7 +80,7 @@ impl ArchiveProxy {
     }
 
     pub fn get_write_buf(&self) -> WriteBuf<'_> {
-        let slice = unsafe { slice::from_raw_parts_mut(self.buffer.ptr.offset(0 as isize), self.buffer.len as usize) };
+        let slice = unsafe { slice::from_raw_parts_mut(self.buffer.ptr.offset(0), self.buffer.len as usize) };
         WriteBuf::new(slice)
     }
 
@@ -95,7 +91,7 @@ impl ArchiveProxy {
         msg.response_stream_id(response_stream_id);
         msg.version(PROTOCOL_SEMANTIC_VERSION.version());
         msg.response_channel(response_channel.as_bytes());
-        msg.encoded_credentials(&credentials);
+        msg.encoded_credentials(credentials);
         let len = msg.encoded_length();
         // write header
         let _ = msg.header(0);

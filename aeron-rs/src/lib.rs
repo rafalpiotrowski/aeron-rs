@@ -16,6 +16,13 @@
 // TODO: Eliminate later
 #![allow(clippy::missing_safety_doc)]
 
+use chrono as _;
+use ctrlc as _;
+use galvanic_assert as _;
+use nix as _;
+use num_traits as _;
+use pretty_env_logger as _;
+
 #[macro_use]
 extern crate memoffset;
 

@@ -123,16 +123,12 @@ impl ChannelUri {
 
     #[inline]
     pub fn remove(&mut self, key: &str) -> String {
-        if let Some(result) = self.params.remove(key) {
-            result
-        } else {
-            String::default()
-        }
+        self.params.remove(key).unwrap_or_default()
     }
 
     #[inline]
     pub fn contains_key(&self, key: &str) -> bool {
-        self.params.get(key).is_some()
+        self.params.contains_key(key)
     }
 
     pub fn parse(uri: &str) -> Result<Arc<Mutex<Self>>, AeronError> {

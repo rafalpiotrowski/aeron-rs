@@ -236,7 +236,7 @@ impl ManyToOneRingBuffer {
     // Read all messages
     #[inline]
     pub fn read_all<F: FnMut(AeronCommand, AtomicBuffer)>(&self, handler: F) -> i32 {
-        self.read(handler, std::i32::MAX)
+        self.read(handler, i32::MAX)
     }
 
     #[inline]
@@ -482,9 +482,12 @@ mod tests {
         let test_buffer = AlignedBuffer::with_capacity(ODD_BUFFER_SZ);
         let ab = AtomicBuffer::from_aligned(&test_buffer);
         let ring_res = ManyToOneRingBuffer::new(ab);
-        assert_eq!(ring_res.unwrap_err(), RingBufferError::CapacityIsNotTwoPower {
-            capacity: ODD_BUFFER_SZ - TRAILER_LENGTH
-        });
+        assert_eq!(
+            ring_res.unwrap_err(),
+            RingBufferError::CapacityIsNotTwoPower {
+                capacity: ODD_BUFFER_SZ - TRAILER_LENGTH
+            }
+        );
     }
 
     #[test]
