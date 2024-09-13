@@ -1,0 +1,14 @@
+[package]
+name = "aeron-stat"
+version = "0.1.0"
+edition = "2021"
+
+[lints]
+workspace = true
+
+[dependencies]
+pretty_env_logger = { workspace = true }
+lazy_static = { workspace = true }
+chrono = { workspace = true }
+aeron = { path = "../aeron-rs" }
+ctrlc = { workspace = true }

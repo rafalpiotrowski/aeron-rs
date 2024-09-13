@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-extern crate aeron_rs;
+extern crate aeron;
 
 use std::ffi::CString;
 use std::sync::atomic::{AtomicBool, AtomicI64, Ordering};
 use std::time::Duration;
 use std::{slice, thread};
 
-use aeron_rs::aeron::Aeron;
-use aeron_rs::concurrent::atomic_buffer::{AlignedBuffer, AtomicBuffer};
-use aeron_rs::concurrent::logbuffer::buffer_claim::BufferClaim;
-use aeron_rs::concurrent::logbuffer::header::Header;
-use aeron_rs::concurrent::status::status_indicator_reader::CHANNEL_ENDPOINT_ACTIVE;
-use aeron_rs::concurrent::strategies::{BusySpinIdleStrategy, SleepingIdleStrategy, Strategy};
-use aeron_rs::context::Context;
-use aeron_rs::fragment_assembler::FragmentAssembler;
-use aeron_rs::utils::errors::AeronError;
-use aeron_rs::utils::types::{Index, I64_SIZE};
+use aeron::aeron::Aeron;
+use aeron::concurrent::atomic_buffer::{AlignedBuffer, AtomicBuffer};
+use aeron::concurrent::logbuffer::buffer_claim::BufferClaim;
+use aeron::concurrent::logbuffer::header::Header;
+use aeron::concurrent::status::status_indicator_reader::CHANNEL_ENDPOINT_ACTIVE;
+use aeron::concurrent::strategies::{BusySpinIdleStrategy, SleepingIdleStrategy, Strategy};
+use aeron::context::Context;
+use aeron::fragment_assembler::FragmentAssembler;
+use aeron::utils::errors::AeronError;
+use aeron::utils::types::{Index, I64_SIZE};
 use lazy_static::lazy_static;
 
 use crate::common::{str_to_c, TEST_CHANNEL, TEST_STREAM_ID};

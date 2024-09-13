@@ -1,0 +1,12 @@
+[package]
+name = "aeron-error-stat"
+version = "0.1.0"
+edition = "2021"
+
+[lints]
+workspace = true
+
+[dependencies]
+pretty_env_logger = { workspace = true }
+chrono = { workspace = true }
+aeron = { path = "../aeron-rs" }

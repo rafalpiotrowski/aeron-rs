@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-extern crate aeron_rs;
+extern crate aeron;
 
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::time::Duration;
 
-use aeron_rs::aeron::Aeron;
-use aeron_rs::concurrent::counters::CountersReader;
-use aeron_rs::context::Context;
+use aeron::aeron::Aeron;
+use aeron::concurrent::counters::CountersReader;
+use aeron::context::Context;
 use lazy_static::lazy_static;
 
 // IMPORTANT NOTICE: currently integration test can only work sequentially

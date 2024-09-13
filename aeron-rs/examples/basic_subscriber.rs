@@ -18,16 +18,16 @@ use std::ffi::CString;
 use std::slice;
 use std::sync::atomic::{AtomicBool, AtomicI64, Ordering};
 
-use aeron_rs::aeron::Aeron;
-use aeron_rs::concurrent::atomic_buffer::AtomicBuffer;
-use aeron_rs::concurrent::logbuffer::header::Header;
-use aeron_rs::concurrent::status::status_indicator_reader::channel_status_to_str;
-use aeron_rs::concurrent::strategies::{SleepingIdleStrategy, Strategy};
-use aeron_rs::context::Context;
-use aeron_rs::example_config::{DEFAULT_CHANNEL, DEFAULT_STREAM_ID};
-use aeron_rs::image::Image;
-use aeron_rs::utils::errors::AeronError;
-use aeron_rs::utils::types::Index;
+use aeron::aeron::Aeron;
+use aeron::concurrent::atomic_buffer::AtomicBuffer;
+use aeron::concurrent::logbuffer::header::Header;
+use aeron::concurrent::status::status_indicator_reader::channel_status_to_str;
+use aeron::concurrent::strategies::{SleepingIdleStrategy, Strategy};
+use aeron::context::Context;
+use aeron::example_config::{DEFAULT_CHANNEL, DEFAULT_STREAM_ID};
+use aeron::image::Image;
+use aeron::utils::errors::AeronError;
+use aeron::utils::types::Index;
 use lazy_static::lazy_static;
 
 lazy_static! {

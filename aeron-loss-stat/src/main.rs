@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-use aeron_rs::concurrent::reports::{self, loss_report_descriptor};
-use aeron_rs::context::Context;
-use aeron_rs::utils::memory_mapped_file::MemoryMappedFile;
+use aeron::concurrent::reports::{self, loss_report_descriptor};
+use aeron::context::Context;
+use aeron::utils::memory_mapped_file::MemoryMappedFile;
 use chrono::{Local, TimeZone};
 
 struct CmdOpts {

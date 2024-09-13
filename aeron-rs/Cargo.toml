@@ -1,5 +1,5 @@
 [package]
-name = "aeron-rs"
+name = "aeron"
 version = "0.1.7"
 authors = [
     "Denis Komissarov <denisxor@gmail.com>",
@@ -30,9 +30,9 @@ num-traits = { workspace = true }
 lazy_static = { workspace = true }
 memmap = { workspace = true }
 nix = { workspace = true, features = ['fs'] }
-ctrlc = { workspace = true }
 aeron-archiver-messages = { path = "../aeron-archiver-messages" }
 agrona = { path = "../agrona" }
+ctrlc = { workspace = true }
 
 # crate specific dependencies
 

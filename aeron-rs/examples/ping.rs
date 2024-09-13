@@ -19,20 +19,18 @@ use std::sync::atomic::{AtomicBool, AtomicI64, Ordering};
 use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
-use aeron_rs::aeron::Aeron;
-use aeron_rs::concurrent::atomic_buffer::{AlignedBuffer, AtomicBuffer};
-use aeron_rs::concurrent::logbuffer::header::Header;
-use aeron_rs::concurrent::strategies::{BusySpinIdleStrategy, Strategy};
-use aeron_rs::context::Context;
-use aeron_rs::example_config::{
-    DEFAULT_FRAGMENT_COUNT_LIMIT, DEFAULT_MESSAGE_LENGTH, DEFAULT_PING_CHANNEL, DEFAULT_PING_STREAM_ID,
-};
-use aeron_rs::fragment_assembler::FragmentAssembler;
-use aeron_rs::image::Image;
-use aeron_rs::publication::Publication;
-use aeron_rs::subscription::Subscription;
-use aeron_rs::utils::errors::AeronError;
-use aeron_rs::utils::types::Index;
+use aeron::aeron::Aeron;
+use aeron::concurrent::atomic_buffer::{AlignedBuffer, AtomicBuffer};
+use aeron::concurrent::logbuffer::header::Header;
+use aeron::concurrent::strategies::{BusySpinIdleStrategy, Strategy};
+use aeron::context::Context;
+use aeron::example_config::{DEFAULT_FRAGMENT_COUNT_LIMIT, DEFAULT_MESSAGE_LENGTH, DEFAULT_PING_CHANNEL, DEFAULT_PING_STREAM_ID};
+use aeron::fragment_assembler::FragmentAssembler;
+use aeron::image::Image;
+use aeron::publication::Publication;
+use aeron::subscription::Subscription;
+use aeron::utils::errors::AeronError;
+use aeron::utils::types::Index;
 use clap::Parser;
 use hdrhistogram::Histogram;
 use lazy_static::lazy_static;

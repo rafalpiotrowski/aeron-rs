@@ -20,21 +20,21 @@ use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time::Duration;
 
-use aeron_rs::aeron::Aeron;
-use aeron_rs::concurrent::atomic_buffer::AtomicBuffer;
-use aeron_rs::concurrent::logbuffer::buffer_claim::BufferClaim;
-use aeron_rs::concurrent::logbuffer::header::Header;
-use aeron_rs::concurrent::strategies::{BusySpinIdleStrategy, Strategy};
-use aeron_rs::context::Context;
-use aeron_rs::example_config::{
+use aeron::aeron::Aeron;
+use aeron::concurrent::atomic_buffer::AtomicBuffer;
+use aeron::concurrent::logbuffer::buffer_claim::BufferClaim;
+use aeron::concurrent::logbuffer::header::Header;
+use aeron::concurrent::strategies::{BusySpinIdleStrategy, Strategy};
+use aeron::context::Context;
+use aeron::example_config::{
     DEFAULT_CHANNEL, DEFAULT_FRAGMENT_COUNT_LIMIT, DEFAULT_LINGER_TIMEOUT_MS, DEFAULT_MESSAGE_LENGTH, DEFAULT_NUMBER_OF_MESSAGES,
     DEFAULT_STREAM_ID,
 };
-use aeron_rs::fragment_assembler::FragmentAssembler;
-use aeron_rs::image::Image;
-use aeron_rs::utils::errors::AeronError;
-use aeron_rs::utils::rate_reporter::RateReporter;
-use aeron_rs::utils::types::Index;
+use aeron::fragment_assembler::FragmentAssembler;
+use aeron::image::Image;
+use aeron::utils::errors::AeronError;
+use aeron::utils::rate_reporter::RateReporter;
+use aeron::utils::types::Index;
 use clap::Parser;
 use lazy_static::lazy_static;
 

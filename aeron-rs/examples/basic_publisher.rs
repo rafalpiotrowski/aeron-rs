@@ -19,12 +19,12 @@ use std::io::{stdout, Write};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::time::Duration;
 
-use aeron_rs::aeron::Aeron;
-use aeron_rs::concurrent::atomic_buffer::{AlignedBuffer, AtomicBuffer};
-use aeron_rs::concurrent::status::status_indicator_reader::channel_status_to_str;
-use aeron_rs::context::Context;
-use aeron_rs::example_config::{DEFAULT_CHANNEL, DEFAULT_STREAM_ID};
-use aeron_rs::utils::errors::AeronError;
+use aeron::aeron::Aeron;
+use aeron::concurrent::atomic_buffer::{AlignedBuffer, AtomicBuffer};
+use aeron::concurrent::status::status_indicator_reader::channel_status_to_str;
+use aeron::context::Context;
+use aeron::example_config::{DEFAULT_CHANNEL, DEFAULT_STREAM_ID};
+use aeron::utils::errors::AeronError;
 use lazy_static::lazy_static;
 use nix::NixPath;
 

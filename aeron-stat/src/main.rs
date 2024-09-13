@@ -13,16 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::thread;
 use std::time::Duration;
 
-use aeron_rs::cnc_file_descriptor;
-use aeron_rs::concurrent::counters::CountersReader;
-use aeron_rs::context::Context;
-use aeron_rs::utils::memory_mapped_file::MemoryMappedFile;
-use aeron_rs::utils::misc::{semantic_version_major, semantic_version_to_string};
+use aeron::cnc_file_descriptor;
+use aeron::concurrent::counters::CountersReader;
+use aeron::context::Context;
+use aeron::utils::memory_mapped_file::MemoryMappedFile;
+use aeron::utils::misc::{semantic_version_major, semantic_version_to_string};
 use chrono::Local;
 use lazy_static::lazy_static;
 
