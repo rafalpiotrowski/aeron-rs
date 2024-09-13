@@ -20,6 +20,7 @@
 extern crate memoffset;
 
 pub mod aeron;
+pub mod archiver;
 pub mod buffer_builder;
 pub mod channel_uri;
 pub mod channel_uri_string_builder;
@@ -38,5 +39,6 @@ pub mod heartbeat_timestamp;
 pub mod image;
 pub mod protocol;
 pub mod publication;
+pub mod security;
 pub mod subscription;
 pub mod utils;

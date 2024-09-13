@@ -1,5 +1,5 @@
 [workspace]
-members = ["aeron-rs"]
+members = [ "aeron-archiver-messages","aeron-rs", "agrona"]
 resolver = "2"
 
 [workspace.dependencies]

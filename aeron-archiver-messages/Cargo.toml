@@ -1,0 +1,11 @@
+[package]
+name = "aeron-archiver-messages"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+aeron_archiver_codecs = { path = "./generated/aeron_archiver_codecs" }
+
+[lints]
+workspace = true
+
