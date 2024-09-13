@@ -52,7 +52,7 @@ jobs:
     name: Clippy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@master      
       - name: Install minimal stable with clippy and rustfmt
         uses: actions-rs/toolchain@v1
         with:
@@ -60,7 +60,11 @@ jobs:
           toolchain: stable
           components: clippy
           override: true
-
+      - name: SBE Schema
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: --git https://github.com/rafalpiotrowski/sbe-schema
       - name: Clippy
         uses: actions-rs/cargo@v1
         with:
