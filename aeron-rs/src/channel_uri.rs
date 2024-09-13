@@ -100,11 +100,7 @@ impl ChannelUri {
 
     #[inline]
     pub fn get(&self, key: &str) -> &str {
-        if let Some(value) = self.params.get(key) {
-            value
-        } else {
-            ""
-        }
+        self.params.get(key).map_or("", |k| k.as_str())
     }
 
     #[inline]
