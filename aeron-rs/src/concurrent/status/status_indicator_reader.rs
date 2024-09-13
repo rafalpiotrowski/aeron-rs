@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-use crate::concurrent::atomic_buffer::AtomicBuffer;
+use std::borrow::BorrowMut;
+use std::sync::{Arc, LazyLock, Mutex};
+
+use crate::concurrent::atomic_buffer::{AlignedBuffer, AtomicBuffer};
 use crate::concurrent::counters::CountersReader;
 use crate::utils::types::{Index, I64_SIZE};
 
@@ -26,6 +29,11 @@ pub const CHANNEL_ENDPOINT_CLOSING: i64 = 2;
 pub const NO_ID_ALLOCATED: i32 = -1;
 
 static mut STATIC_BUFFER_SLICE: [u8; 8] = [0, 0, 0, 0, 0, 0, 0, 0];
+
+#[repr(align(64))]
+struct AlignedBufferSlice([u8; 8]);
+
+static mut STATIC_ALIGNED_BUFFER_SLICE: AlignedBufferSlice = unsafe { AlignedBufferSlice(STATIC_BUFFER_SLICE) };
 
 pub fn channel_status_to_str(status_id: i64) -> String {
     match status_id {
@@ -39,10 +47,10 @@ pub fn channel_status_to_str(status_id: i64) -> String {
 
 fn static_buffer() -> AtomicBuffer {
     let buffer = unsafe {
-        assert_eq!(STATIC_BUFFER_SLICE.len(), I64_SIZE as usize);
-        AtomicBuffer::wrap_slice(&mut STATIC_BUFFER_SLICE)
+        assert_eq!(STATIC_ALIGNED_BUFFER_SLICE.0.len(), I64_SIZE as usize);
+        AtomicBuffer::wrap_slice(&mut STATIC_ALIGNED_BUFFER_SLICE.0)
     };
-    buffer.put_ordered::<i64>(0, CHANNEL_ENDPOINT_ACTIVE);
+    buffer.put_ordered(0, CHANNEL_ENDPOINT_ACTIVE);
     buffer
 }
 

@@ -1,0 +1,44 @@
+[package]
+name = "aeron-rs"
+version = "0.1.7"
+authors = [
+    "Denis Komissarov <denisxor@gmail.com>",
+    "Kirill Karbushev <kiriosk@yandex.ru>",
+    "Alexander Ostrovskiy <alexander.ostrovskiy@gmail.com>",
+]
+license = "Apache-2.0"
+description = "Aeron client library - fast messaging over UDP on Rust"
+readme = "README.md"
+repository = "https://github.com/UnitedTraders/aeron-rs"
+edition = "2021"
+
+[lints]
+workspace = true
+
+[dependencies]
+# workspace wide dependencies
+thiserror = { workspace = true }
+rand = { workspace = true }
+log = { workspace = true }
+pretty_env_logger = { workspace = true }
+chrono = { workspace = true }
+core_affinity = { workspace = true }
+galvanic-assert = { workspace = true }
+cache_line_size = { workspace = true }
+memoffset = { workspace = true }
+num-traits = { workspace = true }
+lazy_static = { workspace = true }
+memmap = { workspace = true }
+nix = { workspace = true, features = ['fs'] }
+ctrlc = { workspace = true }
+
+# crate specific dependencies
+
+[dev-dependencies]
+tempfile = "3.10"
+hdrhistogram = "7.5"
+clap = { version = "4.5", features = ["derive"] }
+ntest = "0.9"
+
+[build-dependencies]
+rustc_version = "0.4"

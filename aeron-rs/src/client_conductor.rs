@@ -1956,6 +1956,7 @@ mod tests {
     use galvanic_assert::{assert_that, has_structure, structure};
     use lazy_static::lazy_static;
     use nix::unistd;
+    use ntest::timeout;
 
     use super::*;
     use crate::command::control_protocol_events::AeronCommand;
@@ -3668,6 +3669,7 @@ mod tests {
     }
 
     #[test]
+    #[timeout(5000)]
     fn should_close_publication_on_inter_service_timeout() {
         let test = ClientConductorTest::new();
 
@@ -3700,6 +3702,7 @@ mod tests {
     }
 
     #[test]
+    #[timeout(5000)]
     fn should_close_exclusive_publication_on_inter_service_timeout() {
         let test = ClientConductorTest::new();
 
@@ -3732,6 +3735,7 @@ mod tests {
     }
 
     #[test]
+    #[timeout(5000)]
     fn should_close_subscription_on_inter_service_timeout() {
         let test = ClientConductorTest::new();
 
@@ -3765,6 +3769,7 @@ mod tests {
     }
 
     #[test]
+    #[timeout(5000)]
     fn should_close_all_publications_and_subscriptions_on_inter_service_timeout() {
         let test = ClientConductorTest::new();
 
@@ -3849,6 +3854,7 @@ mod tests {
     }
 
     #[test]
+    #[timeout(5000)]
     fn should_remove_image_on_inter_service_timeout() {
         let test = ClientConductorTest::new();
 

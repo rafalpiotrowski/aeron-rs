@@ -83,6 +83,24 @@ pub fn alloc_buffer_aligned(size: Index) -> *mut u8 {
     }
 }
 
+// pub fn alloc_buffer_aligned(size: Index) -> *mut u8 {
+//     unsafe {
+//         let layout = Layout::from_size_align_unchecked(size as usize, CACHE_LINE_SIZE);
+//         let ptr = alloc_zeroed(layout);
+//         // The offset is expressed in number of T elements, and not bytes
+//         let offset = ptr.align_offset(CACHE_LINE_SIZE);
+//         if offset == usize::MAX {
+//             panic!("Failed to align buffer");
+//         }
+//         let offset = offset as i32;
+//         if offset < size - 1 {
+//             let p = ptr.add(offset as usize);
+//             return p;
+//         }
+//         panic!("Failed to align buffer");
+//     }
+// }
+
 /// Deallocate a buffer aligned on a cache size
 #[allow(clippy::not_unsafe_ptr_arg_deref)]
 pub fn dealloc_buffer_aligned(buff_ptr: *mut u8, len: Index) {
