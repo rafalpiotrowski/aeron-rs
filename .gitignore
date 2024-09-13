@@ -39,3 +39,5 @@ tags
 # End of https://www.gitignore.io/api/vim
 
 *.simple-binary-encoding/
+
+.vscode
