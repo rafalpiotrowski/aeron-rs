@@ -22,7 +22,7 @@ fn suppress_warnings(module: &str) -> io::Result<()> {
 fn main() {
     println!("cargo:rerun-if-changed=schema");
 
-    let output = Command::new("sbe")
+    let output = Command::new("sbe-cli")
         .arg("schema")
         .arg("generate")
         .arg("--file")

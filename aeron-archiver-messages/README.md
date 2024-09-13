@@ -7,3 +7,10 @@ install running the following command
 ```bash
 cargo install --git https://github.com/rafalpiotrowski/sbe-schema
 ```
+
+or
+
+```bash
+cargo install sbe-cli
+```
+
