@@ -29,6 +29,10 @@ jobs:
         shell: bash
         run: |
            echo "$(systemd-path user-binaries)" >> $GITHUB_PATH
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '21'           
       - name: Install rust
         uses: actions-rs/toolchain@v1
         with:
