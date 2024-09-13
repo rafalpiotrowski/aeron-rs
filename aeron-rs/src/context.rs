@@ -329,6 +329,9 @@ pub struct Context {
     conductor_cpu_affinity: Option<usize>,
 }
 
+unsafe impl Send for Context {}
+unsafe impl Sync for Context {}
+
 impl Default for Context {
     fn default() -> Self {
         Self::new()

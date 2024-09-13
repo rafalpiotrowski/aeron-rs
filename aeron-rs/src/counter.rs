@@ -31,6 +31,9 @@ pub struct Counter {
     is_closed: AtomicBool,
 }
 
+unsafe impl Send for Counter {}
+unsafe impl Sync for Counter {}
+
 impl Counter {
     pub fn new(
         client_conductor: Arc<Mutex<ClientConductor>>,

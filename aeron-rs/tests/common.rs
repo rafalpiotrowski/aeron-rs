@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 use std::ffi::CString;
 use std::process::{Child, Command};
 use std::time::Duration;
@@ -62,7 +61,7 @@ pub fn stop_aeron_md(driver_proc: Child) {
     println!("Killing aeronmd with pid {}", pid);
 
     Command::new("kill")
-        .args(&["-2", &pid]) // Send SIGINT
+        .args(["-2", &pid]) // Send SIGINT
         .spawn()
         .expect("problem while sending SIGINT to aeronmd");
 

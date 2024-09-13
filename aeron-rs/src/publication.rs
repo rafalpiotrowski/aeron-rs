@@ -77,6 +77,9 @@ pub struct Publication {
     header_writer: HeaderWriter,
 }
 
+unsafe impl Send for Publication {}
+unsafe impl Sync for Publication {}
+
 impl Publication {
     #[allow(clippy::too_many_arguments)]
     pub fn new(

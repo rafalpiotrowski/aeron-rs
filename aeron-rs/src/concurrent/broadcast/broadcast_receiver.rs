@@ -36,6 +36,9 @@ pub struct BroadcastReceiver {
     lapped_count: AtomicU64,
 }
 
+unsafe impl Send for BroadcastReceiver {}
+unsafe impl Sync for BroadcastReceiver {}
+
 impl BroadcastReceiver {
     pub fn new(buffer: AtomicBuffer) -> Result<BroadcastReceiver, BroadcastTransmitError> {
         let capacity = buffer.capacity() - broadcast_buffer_descriptor::TRAILER_LENGTH;

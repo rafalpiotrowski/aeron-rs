@@ -156,6 +156,9 @@ pub struct CountersReader {
     max_counter_id: i32,
 }
 
+unsafe impl Send for CountersReader {}
+unsafe impl Sync for CountersReader {}
+
 impl CountersReader {
     pub fn new(metadata_buffer: AtomicBuffer, values_buffer: AtomicBuffer) -> Self {
         Self {

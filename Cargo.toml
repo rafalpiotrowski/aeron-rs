@@ -22,3 +22,7 @@ target-dir = "target"
 missing_docs = "allow"
 # missing_docs = "deny"
 unused_crate_dependencies = "warn"
+
+[workspace.lints.clippy]
+arc_with_non_send_sync = "allow"
+unused_crate_dependencies = "allow"

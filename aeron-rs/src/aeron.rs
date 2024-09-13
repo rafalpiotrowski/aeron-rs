@@ -73,6 +73,9 @@ pub struct Aeron {
     conductor_invoker: AgentInvoker<ClientConductor>,
 }
 
+unsafe impl Send for Aeron {}
+unsafe impl Sync for Aeron {}
+
 const IDLE_SLEEP_MS: Moment = 4;
 const IDLE_SLEEP_MS_1: Moment = 1;
 const IDLE_SLEEP_MS_16: Moment = 16;

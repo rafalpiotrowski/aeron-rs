@@ -34,6 +34,9 @@ pub struct CopyBroadcastReceiver {
     aligned_buffer: AlignedBuffer,
 }
 
+unsafe impl Send for CopyBroadcastReceiver {}
+unsafe impl Sync for CopyBroadcastReceiver {}
+
 impl CopyBroadcastReceiver {
     pub fn new(receiver: Arc<Mutex<BroadcastReceiver>>) -> Self {
         let scratch = AlignedBuffer::with_capacity(4096);

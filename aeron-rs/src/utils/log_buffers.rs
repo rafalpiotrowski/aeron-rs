@@ -16,6 +16,9 @@ pub struct LogBuffers {
     buffers: [AtomicBuffer; log_buffer_descriptor::PARTITION_COUNT as usize + 1],
 }
 
+unsafe impl Send for LogBuffers {}
+unsafe impl Sync for LogBuffers {}
+
 impl LogBuffers {
     /// # Safety
     ///

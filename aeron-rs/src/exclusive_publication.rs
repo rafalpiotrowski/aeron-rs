@@ -83,6 +83,9 @@ pub struct ExclusivePublication {
     header_writer: HeaderWriter,
 }
 
+unsafe impl Send for ExclusivePublication {}
+unsafe impl Sync for ExclusivePublication {}
+
 impl ExclusivePublication {
     #[allow(clippy::too_many_arguments)]
     pub fn new(
