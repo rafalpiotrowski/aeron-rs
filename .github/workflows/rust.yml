@@ -16,10 +16,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
-          java-version: '21'
+    - uses: actions/setup-java@v4.3.0
+      with:
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '21'
     - name: Install SBE Schema
       run: cargo install --git https://github.com/rafalpiotrowski/sbe-schema
     - name: Build
