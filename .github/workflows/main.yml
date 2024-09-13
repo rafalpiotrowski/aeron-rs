@@ -52,7 +52,11 @@ jobs:
     name: Clippy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master      
+      - uses: actions/checkout@master
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '21'  
       - name: Install minimal stable with clippy and rustfmt
         uses: actions-rs/toolchain@v1
         with:
@@ -87,6 +91,6 @@ jobs:
       - name: rustfmt
         uses: actions-rs/cargo@v1
         with:
-          toolchain: nightly
+          toolchain: stable
           command: fmt
           args: --all -- --check
