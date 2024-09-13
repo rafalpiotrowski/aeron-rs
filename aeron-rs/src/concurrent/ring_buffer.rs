@@ -482,12 +482,9 @@ mod tests {
         let test_buffer = AlignedBuffer::with_capacity(ODD_BUFFER_SZ);
         let ab = AtomicBuffer::from_aligned(&test_buffer);
         let ring_res = ManyToOneRingBuffer::new(ab);
-        assert_eq!(
-            ring_res.unwrap_err(),
-            RingBufferError::CapacityIsNotTwoPower {
-                capacity: ODD_BUFFER_SZ - TRAILER_LENGTH
-            }
-        );
+        assert_eq!(ring_res.unwrap_err(), RingBufferError::CapacityIsNotTwoPower {
+            capacity: ODD_BUFFER_SZ - TRAILER_LENGTH
+        });
     }
 
     #[test]

@@ -155,7 +155,9 @@ pub mod encoder {
             self.get_buf_mut().put_u32_at(limit, data_length as u32);
             self.get_buf_mut().put_slice_at(limit + 4, value);
         }
+
     }
+
 } // end encoder
 
 pub mod decoder {
@@ -199,7 +201,13 @@ pub mod decoder {
     }
 
     impl<'a> ListRecordingSubscriptionsRequestDecoder<'a> {
-        pub fn wrap(mut self, buf: ReadBuf<'a>, offset: usize, acting_block_length: u16, acting_version: u16) -> Self {
+        pub fn wrap(
+            mut self,
+            buf: ReadBuf<'a>,
+            offset: usize,
+            acting_block_length: u16,
+            acting_version: u16,
+        ) -> Self {
             let limit = offset + acting_block_length as usize;
             self.buf = buf;
             self.initial_offset = offset;
@@ -278,5 +286,8 @@ pub mod decoder {
             debug_assert!(self.get_limit() >= coordinates.0 + coordinates.1);
             self.get_buf().get_slice_at(coordinates.0, coordinates.1)
         }
+
     }
+
 } // end decoder
+

@@ -251,10 +251,9 @@ mod tests {
 
         //assert
         dbg!(test.buffer);
-        assert_eq!(
-            test.buffer.as_sub_slice(0, 16),
-            &[16, 0, 0, 0, 7, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7]
-        )
+        assert_eq!(test.buffer.as_sub_slice(0, 16), &[
+            16, 0, 0, 0, 7, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7
+        ])
         //todo assert trail
     }
 
@@ -277,13 +276,10 @@ mod tests {
 
         //assert
         dbg!(test.buffer);
-        assert_eq!(
-            test.buffer.as_sub_slice(0, 32),
-            &[
-                16, 0, 0, 0, /* type    7 */ 7, 0, 0, 0, /* msg */ 0, 1, 2, 3, 4, 5, 6, 7, 16, 0, 0, 0,
-                /* type 1024 */ 0, 4, 0, 0, /* msg */ 7, 6, 5, 4, 3, 2, 1, 0,
-            ]
-        )
+        assert_eq!(test.buffer.as_sub_slice(0, 32), &[
+            16, 0, 0, 0, /* type    7 */ 7, 0, 0, 0, /* msg */ 0, 1, 2, 3, 4, 5, 6, 7, 16, 0, 0, 0,
+            /* type 1024 */ 0, 4, 0, 0, /* msg */ 7, 6, 5, 4, 3, 2, 1, 0,
+        ])
 
         //todo assert trail
     }

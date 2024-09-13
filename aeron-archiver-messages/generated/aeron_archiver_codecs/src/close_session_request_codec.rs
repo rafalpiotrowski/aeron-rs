@@ -78,7 +78,9 @@ pub mod encoder {
             let offset = self.offset;
             self.get_buf_mut().put_i64_at(offset, value);
         }
+
     }
+
 } // end encoder
 
 pub mod decoder {
@@ -122,7 +124,13 @@ pub mod decoder {
     }
 
     impl<'a> CloseSessionRequestDecoder<'a> {
-        pub fn wrap(mut self, buf: ReadBuf<'a>, offset: usize, acting_block_length: u16, acting_version: u16) -> Self {
+        pub fn wrap(
+            mut self,
+            buf: ReadBuf<'a>,
+            offset: usize,
+            acting_block_length: u16,
+            acting_version: u16,
+        ) -> Self {
             let limit = offset + acting_block_length as usize;
             self.buf = buf;
             self.initial_offset = offset;
@@ -156,5 +164,8 @@ pub mod decoder {
         pub fn control_session_id(&self) -> i64 {
             self.get_buf().get_i64_at(self.offset)
         }
+
     }
+
 } // end decoder
+

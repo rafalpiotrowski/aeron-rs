@@ -347,8 +347,8 @@ impl CountersManager {
     /// This fn allocates counter with given type, key and label.
     /// The keys can be provided by two ways:
     /// 1. through key_opt param
-    /// 2. could be generated and written in-place by key_func param
-    ///     If both key_opt and key_func are specified then AeronError is returned.
+    /// 2. could be generated and written in-place by key_func param If both key_opt and key_func are specified then
+    ///    AeronError is returned.
     pub fn allocate_opt(
         &mut self,
         type_id: i32,

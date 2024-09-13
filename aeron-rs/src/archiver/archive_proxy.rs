@@ -1,26 +1,19 @@
+use std::slice;
+use std::sync::{Arc, Mutex};
+
 use aeron_archiver_messages::auth_connect_request_codec::AuthConnectRequestEncoder;
 use aeron_archiver_messages::{message_header_codec, WriteBuf};
-use std::{
-    slice,
-    sync::{Arc, Mutex},
-};
 
+use crate::archiver::configuration::{MESSAGE_TIMEOUT_DEFAULT_NS, PROTOCOL_SEMANTIC_VERSION};
 use crate::client_conductor::ClientConductor;
 use crate::concurrent::agent_invoker::AgentInvoker;
-use crate::concurrent::strategies::YieldingIdleStrategy;
+use crate::concurrent::atomic_buffer::{AlignedBuffer, AtomicBuffer};
+use crate::concurrent::strategies::{Strategy, YieldingIdleStrategy};
+use crate::publication::Publication;
+use crate::security::{CredentialSupplier, NoCredentialsSupplier};
 use crate::utils::errors::AeronError;
 use crate::utils::time::{NanoClock, SystemNanoClock};
 use crate::utils::types::Index;
-use crate::{
-    concurrent::{
-        atomic_buffer::{AlignedBuffer, AtomicBuffer},
-        strategies::Strategy,
-    },
-    publication::Publication,
-    security::{CredentialSupplier, NoCredentialsSupplier},
-};
-
-use crate::archiver::configuration::{MESSAGE_TIMEOUT_DEFAULT_NS, PROTOCOL_SEMANTIC_VERSION};
 
 pub const DEFAULT_RETRY_ATTEMPTS: i32 = 3;
 

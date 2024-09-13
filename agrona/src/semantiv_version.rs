@@ -1,5 +1,6 @@
-use crate::AgronaError;
 use std::result::Result;
+
+use crate::AgronaError;
 
 #[derive(Debug, Copy, Clone)]
 pub struct SemanticVersion {

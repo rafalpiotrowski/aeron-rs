@@ -1,9 +1,7 @@
-use std::{
-    fs::OpenOptions,
-    io::{self, Read, Seek, Write},
-    process::Command,
-    str,
-};
+use std::fs::OpenOptions;
+use std::io::{self, Read, Seek, Write};
+use std::process::Command;
+use std::str;
 
 fn suppress_warnings(module: &str) -> io::Result<()> {
     let mut file = OpenOptions::new()
