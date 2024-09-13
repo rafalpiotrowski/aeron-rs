@@ -61,7 +61,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: --all --all-targets --all-features -- -D clippy::all -D warnings -A unused-crate-dependencies
+          args: --all --all-targets --all-features -- -D clippy::all -D warnings
 
   rustfmt:
     name: rustfmt

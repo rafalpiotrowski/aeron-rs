@@ -15,14 +15,9 @@ hdrhistogram = "7.5"
 clap = { version = "4.5", features = ["derive"] }
 ntest = "0.9"
 
-[build]
-target-dir = "target"
-
 [workspace.lints.rust]
 missing_docs = "allow"
 # missing_docs = "deny"
-unused_crate_dependencies = "warn"
 
 [workspace.lints.clippy]
 arc_with_non_send_sync = "allow"
-unused_crate_dependencies = "allow"
