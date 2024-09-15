@@ -21,6 +21,12 @@ maintenance = { status = "actively-developed" }
 [lints]
 workspace = true
 
+[features]
+default = [ "all" ]
+all = [ "archiver", "cluster" ]
+archiver = []
+cluster = []
+
 [dependencies]
 # workspace wide dependencies
 thiserror = { workspace = true }

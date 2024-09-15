@@ -23,6 +23,7 @@ extern crate memoffset;
 
 pub mod aeron;
 pub mod agrona;
+#[cfg(any(feature = "all", feature = "archiver"))]
 pub mod archiver;
 pub mod buffer_builder;
 pub mod channel_uri;
