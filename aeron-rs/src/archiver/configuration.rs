@@ -1,6 +1,6 @@
 use std::sync::LazyLock;
 
-use agrona::semantiv_version::SemanticVersion;
+use crate::agrona::SemanticVersion;
 
 /// Major version of the network protocol from client to archive. If these don't match then client and archive
 /// are not compatible.

@@ -22,6 +22,7 @@ use {chrono as _, ctrlc as _, galvanic_assert as _, nix as _, num_traits as _, p
 extern crate memoffset;
 
 pub mod aeron;
+pub mod agrona;
 pub mod archiver;
 pub mod buffer_builder;
 pub mod channel_uri;

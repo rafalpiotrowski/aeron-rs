@@ -15,6 +15,9 @@ edition = "2021"
 keywords = [ "aeron", "sbe", "messaging", "HFT", "finance" ]
 categories = [ "finance", "network-programming" ]
 
+[badges]
+maintenance = { status = "actively-developed" }
+
 [lints]
 workspace = true
 
@@ -27,7 +30,6 @@ pretty_env_logger = { workspace = true }
 chrono = { workspace = true }
 galvanic-assert = { workspace = true }
 aeron_archiver_codecs = { path = "../aeron_archiver_codecs" }
-agrona = { path = "../agrona" }
 ctrlc = { workspace = true }
 memoffset = "0.9"
 num-traits = "0.2"
