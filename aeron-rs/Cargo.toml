@@ -35,7 +35,7 @@ log = { workspace = true }
 pretty_env_logger = { workspace = true }
 chrono = { workspace = true }
 galvanic-assert = { workspace = true }
-aeron_archiver_codecs = { path = "../aeron_archiver_codecs", optional = true}
+aeron_archiver_codecs = { path = "../aeron_archiver_codecs", version = "0.1.1", optional = true}
 ctrlc = { workspace = true }
 memoffset = "0.9.1"
 num-traits = "0.2.19"
