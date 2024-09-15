@@ -1,6 +1,6 @@
 [package]
 name = "aeron_archiver_codecs"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["sbetool"]
 description = "Message Codecs for communicating with an Aeron Archive."
 edition = "2021"
