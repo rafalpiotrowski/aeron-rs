@@ -1,7 +1,7 @@
-use crate::*;
-
 pub use decoder::RecordingSignalEventDecoder;
 pub use encoder::RecordingSignalEventEncoder;
+
+use crate::*;
 
 pub const SBE_BLOCK_LENGTH: u16 = 44;
 pub const SBE_TEMPLATE_ID: u16 = 24;
@@ -10,8 +10,9 @@ pub const SBE_SCHEMA_VERSION: u16 = 7;
 pub const SBE_SEMANTIC_VERSION: &str = "5.2";
 
 pub mod encoder {
-    use super::*;
     use message_header_codec::*;
+
+    use super::*;
 
     #[derive(Debug, Default)]
     pub struct RecordingSignalEventEncoder<'a> {
@@ -145,14 +146,13 @@ pub mod encoder {
             let offset = self.offset + 40;
             self.get_buf_mut().put_i32_at(offset, value as i32)
         }
-
     }
-
 } // end encoder
 
 pub mod decoder {
-    use super::*;
     use message_header_codec::*;
+
+    use super::*;
 
     #[derive(Clone, Copy, Debug, Default)]
     pub struct RecordingSignalEventDecoder<'a> {
@@ -191,13 +191,7 @@ pub mod decoder {
     }
 
     impl<'a> RecordingSignalEventDecoder<'a> {
-        pub fn wrap(
-            mut self,
-            buf: ReadBuf<'a>,
-            offset: usize,
-            acting_block_length: u16,
-            acting_version: u16,
-        ) -> Self {
+        pub fn wrap(mut self, buf: ReadBuf<'a>, offset: usize, acting_block_length: u16, acting_version: u16) -> Self {
             let limit = offset + acting_block_length as usize;
             self.buf = buf;
             self.initial_offset = offset;
@@ -261,8 +255,5 @@ pub mod decoder {
         pub fn signal(&self) -> recording_signal::RecordingSignal {
             self.get_buf().get_i32_at(self.offset + 40).into()
         }
-
     }
-
 } // end decoder
-
