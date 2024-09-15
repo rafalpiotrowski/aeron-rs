@@ -1,8 +1,8 @@
 use std::slice;
 use std::sync::{Arc, Mutex};
 
-use aeron_archiver_messages::auth_connect_request_codec::AuthConnectRequestEncoder;
-use aeron_archiver_messages::{message_header_codec, WriteBuf};
+use aeron_archiver_codecs::auth_connect_request_codec::AuthConnectRequestEncoder;
+use aeron_archiver_codecs::{message_header_codec, WriteBuf};
 
 use crate::archiver::configuration::{MESSAGE_TIMEOUT_DEFAULT_NS, PROTOCOL_SEMANTIC_VERSION};
 use crate::client_conductor::ClientConductor;

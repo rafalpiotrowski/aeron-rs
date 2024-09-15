@@ -1,5 +1,5 @@
 [workspace]
-members = [ "aeron-archiver-messages", "aeron-error-stat", "aeron-loss-stat","aeron-rs", "aeron-stat", "agrona"]
+members = [ "aeron-archiver-codecs-build", "aeron-error-stat", "aeron-loss-stat","aeron-rs", "aeron-stat", "agrona"]
 resolver = "2"
 
 [workspace.dependencies]

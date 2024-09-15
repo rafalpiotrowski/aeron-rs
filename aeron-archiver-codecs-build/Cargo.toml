@@ -1,0 +1,20 @@
+[package]
+name = "aeron-archiver-codecs-build"
+version = "0.1.0"
+edition = "2021"
+authors = [
+    "Rafal Piotrowski"
+]
+license = "Apache-2.0"
+description = "Aeron Archiver codecs"
+readme = "README.md"
+repository = "https://github.com/rafalpiotrowski/aeron-rs"
+keywords = [ "aeron", "sbe", "messaging", "HFT", "finance" ]
+categories = [ "finance", "network-programming" ]
+
+[dependencies]
+aeron_archiver_codecs = { path = "../aeron_archiver_codecs" }
+
+[lints]
+workspace = true
+

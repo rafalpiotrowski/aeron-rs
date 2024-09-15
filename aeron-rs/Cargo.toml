@@ -1,16 +1,19 @@
 [package]
 name = "aeron"
-version = "0.1.7"
+version = "0.2.0"
 authors = [
-    "Denis Komissarov <denisxor@gmail.com>",
-    "Kirill Karbushev <kiriosk@yandex.ru>",
-    "Alexander Ostrovskiy <alexander.ostrovskiy@gmail.com>",
+    "Denis Komissarov",
+    "Kirill Karbushev>",
+    "Alexander Ostrovskiy",
+    "Rafal Piotrowski"
 ]
 license = "Apache-2.0"
 description = "Aeron client library - fast messaging over UDP on Rust"
 readme = "README.md"
-repository = "https://github.com/UnitedTraders/aeron-rs"
+repository = "https://github.com/rafalpiotrowski/aeron-rs"
 edition = "2021"
+keywords = [ "aeron", "sbe", "messaging", "HFT", "finance" ]
+categories = [ "finance", "network-programming" ]
 
 [lints]
 workspace = true
@@ -23,7 +26,7 @@ log = { workspace = true }
 pretty_env_logger = { workspace = true }
 chrono = { workspace = true }
 galvanic-assert = { workspace = true }
-aeron-archiver-messages = { path = "../aeron-archiver-messages" }
+aeron_archiver_codecs = { path = "../aeron_archiver_codecs" }
 agrona = { path = "../agrona" }
 ctrlc = { workspace = true }
 memoffset = "0.9"
