@@ -21,6 +21,9 @@ use {chrono as _, ctrlc as _, galvanic_assert as _, nix as _, num_traits as _, p
 #[macro_use]
 extern crate memoffset;
 
+#[macro_use]
+extern crate microtype;
+
 pub mod aeron;
 pub mod agrona;
 #[cfg(any(feature = "all", feature = "archiver"))]
@@ -41,8 +44,11 @@ pub mod exclusive_publication;
 pub mod fragment_assembler;
 pub mod heartbeat_timestamp;
 pub mod image;
+mod primitives;
 pub mod protocol;
 pub mod publication;
 pub mod security;
 pub mod subscription;
 pub mod utils;
+
+pub use primitives::*;
