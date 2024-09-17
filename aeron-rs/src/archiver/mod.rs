@@ -1,6 +1,7 @@
 pub mod archive;
 mod archive_proxy;
 pub(crate) mod configuration;
+pub mod recording_signal_consumer;
 
 pub use archive_proxy::ArchiveProxy;
 
